@@ -29,14 +29,16 @@ let id = 6;
 // 🚨 IMPORTANTE SI USAN PROMESAS HAY QUE RETORNARLAS! LOS TESTS PUEDEN FALLAR SI NO LO HACEN 🚨
 
 
-export const getAllMovies = () => {
-    return function(dispatch) {
-        return fetch('http://localhost:3001/movies')
-        .then(res => res.json())
-        .then(data => {
-            dispatch({type: GET_ALL_MOVIES, payload: data})
-        })
-    }
+export const getAllMovies = () => async (dispatch) =>{
+    // return function(dispatch) {
+    //     return fetch('http://localhost:3001/movies')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         dispatch({type: GET_ALL_MOVIES, payload: data})
+    //     })
+    // }
+    var res = await axios('http://localhost:3001/movies')
+    dispatch({type: GET_ALL_MOVIES, payload: res.data})
  };
 
 export const getMovieDetail = (id) => {
