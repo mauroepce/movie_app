@@ -41,14 +41,16 @@ export const getAllMovies = () => async (dispatch) =>{
     dispatch({type: GET_ALL_MOVIES, payload: res.data})
  };
 
-export const getMovieDetail = (id) => {
-    return function(dispatch) {
-        return fetch(`http://localhost:3001/movies/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            dispatch({type: GET_MOVIE_DETAILS, payload: data })
-        })
-    }
+export const getMovieDetail = (id) => async(dispatch) => {
+    // return function(dispatch) {
+    //     return fetch(`http://localhost:3001/movies/${id}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         dispatch({type: GET_MOVIE_DETAILS, payload: data })
+    //     })
+    // }
+    var res = await axios(`http://localhost:3001/movies/${id}`)
+    dispatch({type: GET_MOVIE_DETAILS, payload: res.data})
  };
 
 export const createMovie = (newMovie) => { 
