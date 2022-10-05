@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 const MovieCard = (props) => {
 
   let dispatch = useDispatch();
+  
 
   const handleButton = () => {
     dispatch(actions.deleteMovie(props.id))
